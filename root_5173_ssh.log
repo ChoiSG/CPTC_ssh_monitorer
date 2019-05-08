@@ -1,0 +1,6 @@
+
+
+echo whoamhello
+whoami
+touch secret_file
+exit

